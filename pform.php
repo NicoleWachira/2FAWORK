@@ -23,6 +23,7 @@
             padding: 20px;
         }
     </style>
+    //begin
 </head>
 <body>
     <div class="Registration-frame">

@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<div class='container mt-5'><div class='alert alert-danger text-center'>No verification code found. Please login again.</div></div>";
         exit();
     }
+    //hereSAZQ
 
     // Verify OTP
     if ($otp === $_SESSION['VerificationCode']) {

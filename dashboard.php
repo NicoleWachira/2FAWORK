@@ -26,7 +26,7 @@ $Email = $_SESSION['Email'];
         <p class="text-center">You have successfully verified your account.</p>
         <div class="mt-4">
             <label for="username" class="form-label">Username</label>
-            <input type="text" id="username" class="form-control" value="<?php echo htmlspecialchars($Username); ?>" readonly>
+            <input type="text" id="username" class="form-control" value="<?php echo htmlspecialchars($sername); ?>" readonly>
 
             <label for="email" class="form-label mt-3">Email</label>
             <input type="email" id="email" class="form-control" value="<?php echo htmlspecialchars($Email); ?>" readonly>
