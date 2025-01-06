@@ -17,7 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Execute the query
         $stmt->execute();
 
-        echo "<div class='container mt-5'><div class='alert alert-success text-center'>Registration successful!</div></div>";
+        // Redirect to login page after successful registration
+        header("Location: Login.php");
+        exit();
     } catch (PDOException $e) {
         echo "<div class='container mt-5'><div class='alert alert-danger text-center'>Error: " . $e->getMessage() . "</div></div>";
     }
