@@ -27,13 +27,22 @@
         <p class="text-center">Enter the four-digit verification code sent to your email.</p>
         <form method="POST" action="pverify.php">
             <div class="otp-input">
-                <input type="text" name="digit1" maxlength="1" class="otp-digit" required>
-                <input type="text" name="digit2" maxlength="1" class="otp-digit" required>
-                <input type="text" name="digit3" maxlength="1" class="otp-digit" required>
+                <input type="text" name="digit1" maxlength="1" class="otp-digit" required oninput="moveFocus(this, 'digit2')">
+                <input type="text" name="digit2" maxlength="1" class="otp-digit" required oninput="moveFocus(this, 'digit3')">
+                <input type="text" name="digit3" maxlength="1" class="otp-digit" required oninput="moveFocus(this, 'digit4')">
                 <input type="text" name="digit4" maxlength="1" class="otp-digit" required>
             </div>
             <button type="submit" class="btn btn-primary mt-4 d-block mx-auto">Verify</button>
         </form>
     </div>
+
+    <script>
+        // Auto move focus to the next input after entering a digit
+        function moveFocus(current, nextFieldName) {
+            if (current.value.length === 1) {
+                document.getElementsByName(nextFieldName)[0].focus();
+            }
+        }
+    </script>
 </body>
 </html>
