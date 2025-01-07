@@ -1,7 +1,11 @@
-corrected code <?php
+<?php
 session_start();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require 'dbconnect.php'; 
-require 'vendor/autoload.php'; 
+require 'PHPMailer/vendor/autoload.php'; 
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -30,10 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com'; 
                 $mail->SMTPAuth = true;
-                $mail->Username = 'nicole.wachira@starthmore.edu'; 
-                $mail->Password = 'ykkvgsyipbhoplal';   
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                $mail->Port = 587;
+                $mail->Username = 'nicole.wachira2@gmail.com'; 
+                $mail->Password = 'ybcahlwsyjoolugj';   
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Correct encryption
+                $mail->Port = 465; // Correct port
 
                 // Recipients
                 $mail->setFrom('nicole.wachira@strathmore.edu', 'CYCLA SYSTEMS'); 
@@ -61,5 +65,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     } catch (PDOException $e) {
         echo "<div class='container mt-5'><div class='alert alert-danger text-center'>Database error: " . $e->getMessage() . "</div></div>";
-    }
+    }
 }
+?>
