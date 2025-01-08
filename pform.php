@@ -30,5 +30,6 @@
             Already have an account? <a href="Login.php">Login here</a>.
         </p>
     </div>
+    <script src="validation.js" defer></script>
 </body>
 </html>
