@@ -5,25 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CYCLA SYSTEMS Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f8f9fa;
-        }
-        .login-frame {
-            width: 400px;
-            height: 400px;
-            border: 1px solid #dee2e6;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            background: white;
-            padding: 20px;
-        }
-    </style>
-    
+    <!-- Link to the external CSS file -->
+    <link href="Login.css" rel="stylesheet">
 </head>
 <body>
     <div class="login-frame">
@@ -39,7 +22,6 @@
             </div>
             <button type="submit" class="btn btn-primary w-100">Login</button>
         </form>
-        
     </div>
 </body>
 </html>
