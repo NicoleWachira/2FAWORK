@@ -1,21 +1,50 @@
-/* Button styling */
-.btn-blue {
-    background-color: #007bff;
-    color: white;
-    border: none;
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    margin: 0;
 }
 
-.btn-blue:hover {
-    background-color: #0056b3;
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #333;
+    padding-top: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
     color: white;
 }
 
-/* Additional custom styling for the dashboard frame */
-.dashboard-frame {
-    margin-top: 50px;
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 15px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    background-color: #575757;
+}
+
+.content {
+    margin-left: 250px;  /* Adjusted to match sidebar */
     padding: 20px;
-    border: 1px solid #dee2e6;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background: white;
+    width: calc(100% - 250px); /* Ensures full width minus sidebar */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;  /* Moves all content to the right */
+    text-align: right;
+}
+
+h1, h2 {
+    margin: 10px 30px;
+    text-align: right;
 }
