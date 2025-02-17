@@ -1,9 +1,6 @@
 <?php
-
 require_once 'dbconnect.php'; // Include the database connection file
 require_once 'PHPMailer/vendor/autoload.php'; // Autoload PHPMailer
-
-// Autoload PHPMailer
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -12,13 +9,15 @@ class User {
     private $username;
     private $email;
     private $password;
+    private $role;  // Add role property
     private $conn;
     private $verificationCode;
 
-    public function __construct($username, $email, $password, $conn) {
+    public function __construct($username, $email, $password, $role, $conn) {
         $this->username = $username;
         $this->email = $email;
         $this->password = password_hash($password, PASSWORD_DEFAULT); // Hash the password
+        $this->role = $role;  // Assign role
         $this->conn = $conn;
     }
 
@@ -37,10 +36,11 @@ class User {
 
     // Insert the user into the database
     public function insert() {
-        $stmt = $this->conn->prepare("INSERT INTO clients (Username, Email, Password) VALUES (:Username, :Email, :Password)");
+        $stmt = $this->conn->prepare("INSERT INTO clients (Username, Email, Password, Role) VALUES (:Username, :Email, :Password, :Role)");
         $stmt->bindParam(':Username', $this->username);
         $stmt->bindParam(':Email', $this->email);
         $stmt->bindParam(':Password', $this->password);
+        $stmt->bindParam(':Role', $this->role);
         $stmt->execute();
     }
 
@@ -95,5 +95,5 @@ class User {
         $_SESSION['Email'] = $this->email;
         $this->sendVerificationEmail($this->verificationCode);
     }
-}
+} // Ensure this closing brace is at the end of the class
 ?>

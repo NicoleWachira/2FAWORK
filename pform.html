@@ -24,10 +24,17 @@
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" name="Password" required>
             </div>
+            <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+                <select class="form-control" id="role" name="Role" required>
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
         <p class="text-center mt-3">
-            Already have an account? <a href="Login.php">Login here</a>.
+            Already have an account? <a href="Login.html">Login here</a>.
         </p>
     </div>
     <script src="validation.js" defer></script>

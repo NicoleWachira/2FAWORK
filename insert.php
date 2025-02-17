@@ -7,13 +7,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['Username']);
     $email = trim($_POST['Email']);
     $password = $_POST['Password']; // Plain password, will be hashed in the User class
+    $role = isset($_POST['Role']) ? trim($_POST['Role']) : 'user'; // Default role is 'user'
 
     try {
         // Create a new instance of the User class
         $db = new Database();
         $conn = $db->connect(); // Get the PDO connection
 
-        $user = new User($username, $email, $password, $conn);
+        $user = new User($username, $email, $password, $role, $conn); // Pass role
 
         // Register the user (will also handle email sending)
         $user->register();

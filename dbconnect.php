@@ -1,6 +1,5 @@
 <?php
 
-// Increase memory limit temporarily if needed
 ini_set('memory_limit', '256M'); // You can increase this to 512M or higher if required
 
 class Database {

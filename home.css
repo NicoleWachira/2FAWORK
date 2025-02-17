@@ -1,0 +1,120 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    margin: 0;
+  }
+  
+  /* Sidebar Styles */
+  .sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #333;
+    padding-top: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    color: white;
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    padding: 15px;
+  }
+  
+  .sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+  }
+  
+  .sidebar ul li a:hover {
+    background-color: #575757;
+  }
+  
+  /* Main Content Styles */
+  .main-content {
+    margin-left: 260px;
+    padding: 20px;
+    width: calc(100% - 260px);
+  }
+  
+  header {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .events {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+  }
+  
+  .event {
+    position: relative;
+    text-align: center;
+    width: 30%;
+    transition: transform 0.3s;
+  }
+  
+  .event img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .event:hover {
+    transform: scale(1.05);
+  }
+  
+  .buy-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: yellow;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .buy-btn:hover {
+    background-color: orange;
+  }
+  
+  .form-popup {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .cancel-btn {
+    background-color: red;
+    color: white;
+  }
+  
+  .cancel-btn:hover {
+    background-color: darkred;
+  }
+  
