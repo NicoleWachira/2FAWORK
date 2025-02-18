@@ -1,37 +1,38 @@
 <?php
 require 'events_connect.php';
-require_once __DIR__ . '/tcpdfmain/tcpdf.php'; // Ensure correct path
+require_once __DIR__ . '/tcpdfmain/tcpdf.php'; 
 require 'PHPMailer/vendor/autoload.php'; // Include PHPMailer
-//require 'phpqrcode/qrlib.php'; // Include QR code generator
+require 'phpqrcode/qrlib.php'; // Include QR code generator
 
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = htmlspecialchars($_POST['name']);
-    $email = htmlspecialchars($_POST['email']);
-    $number = htmlspecialchars($_POST['number']);
-    $eventname = htmlspecialchars($_POST['eventname']);
-    $price = htmlspecialchars($_POST['price']);
-    $event_date = htmlspecialchars($_POST['event_date']);
-    $location = htmlspecialchars($_POST['location']);
-    $quantity = htmlspecialchars($_POST['quantity']);
-    $total_price = $quantity * $price;
+     
+ $name = htmlspecialchars($_POST['name'] ?? '');
+$email = htmlspecialchars($_POST['email'] ?? '');
+$number = htmlspecialchars($_POST['number'] ?? '');
+$eventname = htmlspecialchars($_POST['eventname'] ?? '');
+$event_date = htmlspecialchars($_POST['event_date'] ?? ''); // Updated to match form field name
+$location = htmlspecialchars($_POST['location'] ?? '');
+$quantity = (int) ($_POST['quantity'] ?? 0); // Cast to integer
+$price = (float) ($_POST['price'] ?? 0); // Cast to float
+$total_price = $quantity * $price;
+
     
-    // Fetch event image from database
-    $stmt = $conn->prepare("SELECT image FROM events WHERE eventname = ?");
-    $stmt->bind_param("s", $eventname);
-    $stmt->execute();
-    $stmt->bind_result($event_image);
-    $stmt->fetch();
-    $stmt->close();
+    // Fetch event image from database using PDO
+$stmt = $conn->prepare("SELECT image FROM events WHERE eventname = :eventname");
+$stmt->bindParam(':eventname', $eventname, PDO::PARAM_STR);
+$stmt->execute();
+$event_image = $stmt->fetchColumn();
+
     
     // Generate a unique ticket ID
     $ticketID = uniqid('TICKET_');
     
     // Generate QR Code
-    $qrcode_path = 'qrcodes/' . $ticketID . '.png';
+    $qrcode_path = 'qrcodes/' . $ticketID . '.pngs';
     if (!is_dir('qrcodes')) {
         mkdir('qrcodes', 0777, true);
     }
