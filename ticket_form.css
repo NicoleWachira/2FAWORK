@@ -1,0 +1,94 @@
+/* General reset and styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form-container {
+    background-color: #444;
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+h1 {
+    color: #f1c40f;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #f1c40f;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #f1c40f;
+    border-radius: 5px;
+    background-color: #222;
+    color: #fff;
+    font-size: 16px;
+}
+
+input[type="number"] {
+    width: 60%;
+}
+
+select {
+    cursor: pointer;
+}
+
+button.submit-btn {
+    background-color: #f1c40f;
+    color: #333;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.submit-btn:hover {
+    background-color: #e67e22;
+}
+
+.cancel-btn {
+    display: inline-block;
+    padding: 15px 30px;
+    margin-top: 20px;
+    background-color: #FFEB3B; /* Yellow background */
+    color: black; /* Black text */
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .cancel-btn:hover {
+    background-color: #FDD835; /* Darker yellow for hover effect */
+  }
