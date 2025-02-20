@@ -38,44 +38,21 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php foreach ($events as $event): ?>
           <div class="event">
             <img src="uploads/<?php echo htmlspecialchars($event['image']); ?>" alt="<?php echo htmlspecialchars($event['eventname']); ?>">
-            <h3>eventname:<?php echo htmlspecialchars($event['eventname']); ?></h3>
+            <h3><?php echo htmlspecialchars($event['eventname']); ?></h3>
             <p>Price: <?php echo number_format($event['price']); ?> Ksh</p>
             <p>Date: <?php echo htmlspecialchars($event['event_date']); ?></p>
-            <button class="buy-btn" onclick="openForm('<?php echo htmlspecialchars($event['eventname']); ?>', '<?php echo htmlspecialchars($event['event_date']); ?>', <?php echo htmlspecialchars($event['price']); ?>)">Buy Ticket</button>
-            <!-- Download Ticket Button (Hidden Initially) -->
-            <a id="download-ticket-<?php echo htmlspecialchars($event['eventname']); ?>" href="#" download style="display:none;" class="download-btn">Download Ticket</a>
+            <p>Location: <?php echo htmlspecialchars($event['location']); ?></p>
+            <!-- Link to ticket form -->
+            <a href="ticket_form.php?event=<?php echo htmlspecialchars($event['id']); ?>" class="buy-btn">Buy Ticket</a>
           </div>
         <?php endforeach; ?>
       <?php else: ?>
         <p>No upcoming events available.</p>
       <?php endif; ?>
     </section>
+  </div>
 
-    <!-- Ticket purchase form -->
-    <div id="ticket-form" class="form-popup">
-      <form action="process_ticket.php" method="POST">
-        <h2>Buy Ticket</h2>
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" required>
-    
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-    
-        <label for="number">Phone Number</label>
-        <input type="tel" id="number" name="number" required>
-    
-        <label for="price">Price</label>
-        <input type="text" id="price" name="price" readonly>
-    
-        <label for="event-date">Event Date</label>
-        <input type="text" id="event-date" name="event-date" readonly>
-    
-        <button type="submit" id="submit-btn">Submit</button>
-        <button type="button" class="cancel-btn" onclick="closeForm()">Cancel</button>
-      </form>
-    </div>
-
-  <script src="home.js"></script>
+  <script src="home.js"></script> <!-- Ensure this is linked properly -->
 
 </body>
 </html>
