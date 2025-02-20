@@ -69,6 +69,10 @@ $adminName = htmlspecialchars($_SESSION['user']['Username']);
             <input type="number" name="eventPrice" required>
             <label for="eventDate">Date:</label>
             <input type="date" name="eventDate" required>
+            <label>Location:</label>
+            <input type="text" name="location" required>
+            <label>Quantity:</label>
+            <input type="number" name="quantity" min="1" required>
             <button type="submit">Create Event</button>
             <button type="button" class="cancel-btn" onclick="closeCreateEvent()">Cancel</button>
         </form>

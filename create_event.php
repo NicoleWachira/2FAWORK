@@ -6,6 +6,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $eventname = trim($_POST['eventname']);
     $eventPrice = trim($_POST['eventPrice']);
     $eventDate = trim($_POST['eventDate']);
+    $location = $_POST['location'];
+    $quantity = $_POST['quantity'];
 
     // Validate required fields
     if (empty($eventname) || empty($eventPrice) || empty($eventDate)) {
@@ -51,12 +53,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // ✅ Insert into database
     try {
-        $stmt = $conn->prepare("INSERT INTO events (image, eventname, price, event_date) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$imageName, $eventname, $eventPrice, $eventDate]);
-
-       
+        $stmt = $conn->prepare("INSERT INTO events (image, eventname, price, event_date, location, quantity) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$imageName, $eventname, $eventPrice, $eventDate, $location, $quantity]);
+        
         header("Location: home.php?success=1");
         exit();
+
     } catch (PDOException $e) {
         die("Database error: " . $e->getMessage());
     }
