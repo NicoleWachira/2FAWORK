@@ -72,16 +72,18 @@ h2 {
 }
 .events {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap:20px;
     margin-top: 40px;
   }
   
   .event {
     display:inline-block;
-    padding:30px;
+    padding:20px;
     position: relative;
     text-align: center;
-    width: 40%;
+    width: 30%;
     transition: transform 0.3s;
   }
   
