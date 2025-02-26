@@ -9,9 +9,9 @@ $totalEvents = $totalEventsQuery->fetch()['total_events'];
 $totalTicketsQuery = $conn->query("SELECT SUM(tickets_sold) AS total_tickets FROM events");
 $totalTickets = $totalTicketsQuery->fetch()['total_tickets'];
 
-// Get Revenue per Event
+// Get Revenue per Event (price * tickets_sold) AS revenue 
 $revenueQuery = $conn->query("
-    SELECT eventname, (price * tickets_sold) AS revenue 
+    SELECT eventname, revenue 
     FROM events
 ");
 $revenueData = $revenueQuery->fetchAll();
@@ -34,6 +34,20 @@ $lowestRevenueEvent = $conn->query("
     FROM events 
     ORDER BY revenue ASC LIMIT 1
 ")->fetch();
+
+
+$ticketsPerMonthQuery = $conn->query("
+    SELECT DATE_FORMAT(PurchaseDate, '%Y-%m') AS month, COUNT(*) AS total_purchases 
+    FROM purchases
+    GROUP BY month
+    ORDER BY month ASC
+");
+
+$ticketsPerMonth = $ticketsPerMonthQuery->fetchAll(PDO::FETCH_ASSOC);
+
+// Prepare data for JavaScript
+$months = array_column($ticketsPerMonth, 'month');
+$totalPurchases = array_column($ticketsPerMonth, 'total_purchases');
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +68,6 @@ $lowestRevenueEvent = $conn->query("
             <li><a href="admin.php" class="active">Dashboard</a></li>
             <li><a href="purchases_made.php">PurchasesMade</a></li>
             <li><a href="statistics.php">Statistics</a></li>
-            <li><a href="about.html">About Us</a></li>
             <li><a href="logout.php">Logout</a></li>
         </ul>
     </div>
@@ -67,63 +80,21 @@ $lowestRevenueEvent = $conn->query("
 
     <h2>Financial Statistics</h2>
     <div class="stats-box">Total Revenue: Ksh <?php echo number_format($totalRevenue, 2); ?></div>
-    <div class="stats-box">Highest Revenue Event: <?php echo $highestRevenueEvent['event_name']; ?> (Ksh <?php echo number_format($highestRevenueEvent['revenue'], 2); ?>)</div>
-    <div class="stats-box">Lowest Revenue Event: <?php echo $lowestRevenueEvent['event_name']; ?> (Ksh <?php echo number_format($lowestRevenueEvent['revenue'], 2); ?>)</div>
+    <div class="stats-box">Highest Revenue Event: <?php echo $highestRevenueEvent['eventname']; ?> (Ksh <?php echo number_format($highestRevenueEvent['revenue'], 2); ?>)</div>
+    <div class="stats-box">Lowest Revenue Event: <?php echo $lowestRevenueEvent['eventname']; ?> (Ksh <?php echo number_format($lowestRevenueEvent['revenue'], 2); ?>)</div>
 
     <!-- Charts -->
-    <h2>Revenue per Event</h2>
-    <canvas id="revenueChart"></canvas>
+    <h2>Number of tickets pm</h2>
+    <canvas id="lineChart"></canvas>
 
     <h2>Ticket Sales Distribution</h2>
     <canvas id="salesPieChart"></canvas>
 </div>
-
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const eventLabels = <?php echo json_encode(array_column($revenueData, 'event_name')); ?>;
-    const revenueData = <?php echo json_encode(array_column($revenueData, 'revenue')); ?>;
-
-    new Chart(document.getElementById('revenueChart'), {
-        type: 'bar',
-        data: {
-            labels: eventLabels,
-            datasets: [{
-                label: 'Revenue (Ksh)',
-                data: revenueData,
-                backgroundColor: 'yellow',
-                borderColor: 'black',
-                borderWidth: 2
-            }]
-        },
-        options: {
-            plugins: {
-                legend: { labels: { color: 'black' } }
-            }
-            scales: {
-                x: { ticks: { color: 'yellow' }, grid: { color: 'gray' } },
-                y: { ticks: { color: 'yellow' }, grid: { color: 'gray' } }
-            }
-        }
-    });
-
-    new Chart(document.getElementById('salesPieChart'), {
-        type: 'pie',
-        data: {
-            labels: eventLabels,
-            datasets: [{
-                data: revenueData,
-                backgroundColor: ['yellow', 'black', 'gray', '#FFD700', '#FFA500'],
-                borderColor: 'black'
-            }]
-        },
-        options: {
-            plugins: {
-                legend: { labels: { color: 'black' } }
-            }
-        }
-    });
-});
+    const months = <?php echo json_encode($months); ?>;
+    const totalPurchases = <?php echo json_encode($totalPurchases); ?>;
 </script>
+<script src="statistics.js"></script> 
 
 </body>
 </html>
