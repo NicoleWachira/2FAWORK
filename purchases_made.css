@@ -1,0 +1,154 @@
+/* General Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    display: flex; /* Ensures sidebar and content are side by side */
+    margin: 0;
+    color: #000; /* Black text */
+    background-color: #ffffff; /* White background */
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #333;
+    padding-top: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    color: white;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px 20px; /* Reduced padding to match admin.css */
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 8px 15px; /* Match spacing from admin.css */
+}
+
+.sidebar ul li a:hover {
+    background-color: #575757;
+}
+
+.sidebar ul li a.active {
+    font-weight: bold;
+}
+
+/* Main Content */
+.content {
+    margin-left: 260px; /* Space for sidebar */
+    padding: 20px;
+    width: calc(100% - 260px);
+    max-width: 1200px;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #FFD700; /* Yellow line under rows */
+}
+
+th {
+    background-color: #FFD700; /* Yellow header */
+    color: #000; /* Black text */
+    font-size: 18px;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9; /* Light gray rows for readability */
+}
+
+tr:hover {
+    background-color: #ffecb3; /* Soft yellow hover effect */
+}
+
+/* Heading */
+h1 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+/* Back Button */
+.back-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    background-color: #FFD700;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #ffcc00;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .content {
+        margin-left: 220px;
+        width: calc(100% - 220px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 180px;
+    }
+
+    .content {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        text-align: center;
+        padding-bottom: 10px;
+    }
+
+    .content {
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
