@@ -35,7 +35,6 @@ $adminName = htmlspecialchars($_SESSION['user']['Username']);
             <li><a href="admin.php" class="active">Dashboard</a></li>
             <li><a href="purchases_made.php">PurchasesMade</a></li>
             <li><a href="statistics.php">Statistics</a></li>
-            <li><a href="about.html">About Us</a></li>
             <li><a href="logout.php">Logout</a></li>
         </ul>
     </div>
