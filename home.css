@@ -1,12 +1,12 @@
-/* General Styles */
+\/* General Styles */
 body {
     font-family: Arial, sans-serif;
     display: flex;
     margin: 0;
-  }
-  
-  /* Sidebar Styles */
-  .sidebar {
+}
+
+/* Sidebar Styles */
+.sidebar {
     width: 250px;
     height: 100vh;
     background-color: #333;
@@ -15,77 +15,93 @@ body {
     left: 0;
     top: 0;
     color: white;
-  }
-  
-  .sidebar ul {
+}
+
+.sidebar ul {
     list-style-type: none;
     padding: 0;
-  }
-  
-  .sidebar ul li {
+}
+
+.sidebar ul li {
     padding: 15px;
-  }
-  
-  .sidebar ul li a {
+}
+
+.sidebar ul li a {
     text-decoration: none;
     color: white;
     display: block;
-  }
-  
-  .sidebar ul li a:hover {
+}
+
+.sidebar ul li a:hover {
     background-color: #575757;
-  }
-  
-  /* Main Content Styles */
-  .main-content {
+}
+
+/* Main Content Styles */
+.main-content {
     margin-left: 260px;
     padding: 20px;
     width: calc(100% - 260px);
-  }
-  
-  header {
+}
+
+header {
     text-align: center;
     margin-top: 20px;
-  }
-  
-  .events {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 40px;
-  }
-  
-  .event {
-    position: relative;
+}
+
+/* Events Grid */
+.events {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
+    gap: 20px; /* Spacing between events */
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Event Card */
+.event {
+    background: #f4f4f4;
+    padding: 20px;
     text-align: center;
-    width: 30%;
     transition: transform 0.3s;
-  }
-  
-  .event img {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.event img {
     width: 100%;
-    height: auto;
-  }
-  
-  .event:hover {
+    height: 200px; /* Uniform image size */
+    object-fit: cover; /* Ensures consistency */
+    border-radius: 5px;
+}
+
+.event:hover {
     transform: scale(1.05);
-  }
-  
-  .buy-btn {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+}
+
+/* Fix for "Buy Ticket" button position */
+.buy-btn {
+    position: relative; /* Changed from absolute */
     background-color: yellow;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-  }
-  
-  .buy-btn:hover {
+    display: block;
+    width: 80%; /* Adjusts width for consistency */
+    margin-top: 15px; /* Space from text */
+    text-align: center;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.buy-btn:hover {
     background-color: orange;
-  }
-  
-  .form-popup {
+}
+
+/* Form Popup */
+.form-popup {
     display: none;
     position: fixed;
     left: 50%;
@@ -95,26 +111,51 @@ body {
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 300px;
-  }
-  
-  input {
+    border-radius: 8px;
+}
+
+/* Form Fields */
+input {
     width: 100%;
     padding: 8px;
     margin: 10px 0;
-  }
-  
-  button {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Buttons */
+button {
     width: 100%;
     padding: 10px;
     cursor: pointer;
-  }
-  
-  .cancel-btn {
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Cancel Button */
+.cancel-btn {
     background-color: red;
     color: white;
-  }
-  
-  .cancel-btn:hover {
+}
+
+.cancel-btn:hover {
     background-color: darkred;
-  }
-  
+}
+
+/* Responsive Fixes */
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    
+    .events {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
