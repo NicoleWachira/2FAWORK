@@ -153,5 +153,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Provide download link dynamically
     echo "<p><a href='tickets/$ticketID.pdf' download>Download Your Ticket</a></p>";
+   // Go Back Button
+    echo "<p><a href='Home.php' style='display: inline-block; padding: 10px 20px; font-size: 16px; font-weight: bold; color: black; background-color: yellow; border: none; border-radius: 5px; text-decoration: none; text-align: center;'>Go Back</a></p>";
+
 }
 ?>
