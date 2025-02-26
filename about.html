@@ -1,0 +1,58 @@
+<?php
+class AboutUs {
+    public function render() {
+        ?>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>About Us - Cycler System</title>
+            <link rel="stylesheet" href="about.css">
+        </head>
+        <body>
+            <div class="video-background">
+                <video autoplay muted loop>
+                    <source src="images/bvideo.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <ul>
+                    <li><a href="Home.php">Home</a></li>
+                    <li><a href="dashboard_view.php">Profile</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="logout.php" class="logout">Logout</a></li>
+                </ul>
+            </div>
+            
+            <div class="content-wrapper">
+                <div class="container">
+                    <h1 class="title">About Cycler System</h1>
+                    <p class="description">Welcome to <span class="highlight">Cycler System</span>, the ultimate platform for cycling enthusiasts. We provide a seamless and efficient way to purchase cycling tickets, making your journey hassle-free and enjoyable.</p>
+                    <div class="grid-container">
+                        <div class="grid-item">
+                            <h2 class="subtitle">Our Mission</h2>
+                            <p class="text">We strive to promote a cycling-friendly world by offering a fast, secure, and convenient way to book your tickets, ensuring you never miss an adventure on two wheels.</p>
+                        </div>
+                        <div class="grid-item">
+                            <h2 class="subtitle">Why Choose Us?</h2>
+                            <p class="text">- Easy ticket booking process<br>- Secure payments<br>- Real-time updates<br>- Customer support available 24/7</p>
+                        </div>
+                    </div>
+                    <div class="button-container">
+                        <a href="contact.php" class="btn">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </body>
+        </html>
+        <?php
+    }
+}
+
+$page = new AboutUs();
+$page->render();
+?>
