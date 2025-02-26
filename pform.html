@@ -3,39 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration!!</title>
+    <title>CYCLA Systems Registration</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Link to the external CSS file -->
     <link href="pform.css" rel="stylesheet">
 </head>
 <body>
-    <div class="Registration-frame">
-        <h2 class="text-center">CYCLA SYSTEMS REGISTRATIONS</h2>
-        <form method="POST" action="insert.php">
-            <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" name="Username" required>
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="Email" required>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="Password" required>
-            </div>
-            <div class="mb-3">
-                <label for="role" class="form-label">Role</label>
-                <select class="form-control" id="role" name="Role" required>
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
-        <p class="text-center mt-3">
-            Already have an account? <a href="Login.html">Login here</a>.
-        </p>
+    <div class="registration-container">
+        <div class="registration-frame">
+            <h2 class="text-center">CYCLA SYSTEMS REGISTRATION</h2>
+            <form method="POST" action="insert.php">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="Username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="Email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="Password" required>
+                </div>
+                <div class="mb-3">
+                    <label for="role" class="form-label">Role</label>
+                    <select class="form-control" id="role" name="Role" required>
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-custom">Register</button>
+            </form>
+            <p class="text-center mt-3">
+                Already have an account? <a href="Login.html" class="login-link">Login here</a>.
+            </p>
+        </div>
     </div>
     <script src="validation.js" defer></script>
 </body>
