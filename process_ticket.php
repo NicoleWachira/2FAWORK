@@ -32,6 +32,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $event_image = $event['image'];
     $total_price = $quantity * $price;
 
+    // Insert the purchase into the database
+ $insertQuery = "INSERT INTO purchases (ClientEmail, EventID, Quantity, TotalPrice) VALUES (:email, :event_id, :quantity, :total_price)";
+ $insertStmt = $conn->prepare($insertQuery);
+ $insertStmt->bindParam(':email', $email, PDO::PARAM_STR);
+ $insertStmt->bindParam(':event_id', $event_id, PDO::PARAM_INT);
+ $insertStmt->bindParam(':quantity', $quantity, PDO::PARAM_INT);
+ $insertStmt->bindParam(':total_price', $total_price, PDO::PARAM_STR);
+ $insertStmt->execute();
+
     // Generate a unique ticket ID
     $ticketID = uniqid('TICKET_');
 
