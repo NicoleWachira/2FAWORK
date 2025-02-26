@@ -1,8 +1,8 @@
 /* General Page Styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: black; /* Dark background */
-    color: yellow; /* Primary text color */
+    background-color: orange; /* Dark background */
+    color: black; /* Primary text color */
     display: flex;
     margin: 0;
 }
@@ -17,6 +17,7 @@ body {
 .stats-box {
     background: yellow;
     color: black;
+    /* color: whitesmoke; */
     padding: 15px;
     margin: 10px;
     border-radius: 8px;
@@ -32,7 +33,7 @@ canvas {
     max-width: 600px;
     margin: 20px auto;
     display: block;
-    background: black;
+    background: whitesmoke;
     padding: 10px;
     border-radius: 8px;
 }
