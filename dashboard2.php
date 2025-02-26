@@ -32,7 +32,8 @@ $email = htmlspecialchars($user['Email'] ?? 'No email available');
             <li><a href="Home2.php" class="active">Home</a></li>
             <li><a href="dashboard2.php">Profile</a></li>
             <li><a href="admin.php">Dashboard</a></li>
-            <li><a href="about.html">About Us</a></li>
+            <li><a href="purchases_made.php">PurchasesMade</a></li>
+            <li><a href="statistics.php">Statistics</a></li>
             <li><a href="logout.php">Logout</a></li>
         </ul>
     </div>
