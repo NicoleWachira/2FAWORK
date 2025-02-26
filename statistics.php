@@ -52,6 +52,7 @@ $lowestRevenueEvent = $conn->query("
             <li><a href="Home2.php">Home</a></li>
             <li><a href="dashboard2.php">Profile</a></li>
             <li><a href="admin.php" class="active">Dashboard</a></li>
+            <li><a href="purchases_made.php">PurchasesMade</a></li>
             <li><a href="statistics.php">Statistics</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="logout.php">Logout</a></li>
@@ -96,8 +97,8 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         options: {
             plugins: {
-                legend: { labels: { color: 'yellow' } }
-            },
+                legend: { labels: { color: 'black' } }
+            }
             scales: {
                 x: { ticks: { color: 'yellow' }, grid: { color: 'gray' } },
                 y: { ticks: { color: 'yellow' }, grid: { color: 'gray' } }
@@ -117,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         options: {
             plugins: {
-                legend: { labels: { color: 'yellow' } }
+                legend: { labels: { color: 'black' } }
             }
         }
     });
