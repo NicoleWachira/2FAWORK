@@ -11,12 +11,12 @@ use PHPMailer\PHPMailer\Exception;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = htmlspecialchars($_POST['name'] ?? '');
     $email = htmlspecialchars($_POST['email'] ?? '');
-    $number = htmlspecialchars($_POST['phone'] ?? ''); // Updated to match 'phone' field
+    $number = htmlspecialchars($_POST['phone'] ?? '');
     $event_id = (int) ($_POST['event_id'] ?? 0);
     $quantity = (int) ($_POST['quantity'] ?? 0);
 
     // Fetch event details from database using PDO
-    $stmt = $conn->prepare("SELECT  eventname, event_date, location, price, image FROM events WHERE id = :event_id");
+    $stmt = $conn->prepare("SELECT eventname, event_date, location, price, image FROM events WHERE id = :event_id");
     $stmt->bindParam(':event_id', $event_id, PDO::PARAM_INT);
     $stmt->execute();
     $event = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ticketID = uniqid('TICKET_');
 
     // Generate QR Code
-    $qrcode_path = 'qrcodes/' . $ticketID . '.png'; // Corrected file extension
+    $qrcode_path = 'qrcodes/' . $ticketID . '.png';
     if (!is_dir('qrcodes')) {
         mkdir('qrcodes', 0777, true);
     }
@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        // Insert QR Code event_images/
+        // Insert QR Code
         $pdf->Image($qrcode_path, 110, $pdf->GetY(), 50);
 
         // Ensure 'tickets' directory exists
@@ -105,6 +105,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error generating PDF: " . $e->getMessage());
     }
 
+    // Update ticket sales statistics using cURL
+    $update_url = 'localhost/work/update_tickets_stats.php';
+    $postData = [
+        'event_id' => $event_id,
+        'quantity' => $quantity
+    ];
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $update_url);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $response = curl_exec($ch);
+    if (curl_errno($ch)) {
+        die("Error updating ticket statistics: " . curl_error($ch));
+    }
+    curl_close($ch);
+
     // Send Email with PDF attachment
     try {
         $mail = new PHPMailer(true);
@@ -112,8 +131,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->SMTPDebug = 0;
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'nicole.wachira2@gmail.com'; // Update with your email
-        $mail->Password = 'ybcahlwsyjoolugj'; // Use App Password (never share plain passwords!)
+        $mail->Username = 'nicole.wachira2@gmail.com';
+        $mail->Password = 'ybcahlwsyjoolugj'; // Use App Password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port = 465;
 
