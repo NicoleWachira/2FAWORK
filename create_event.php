@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $conn->prepare("INSERT INTO events (image, eventname, price, event_date, location, quantity) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->execute([$imageName, $eventname, $eventPrice, $eventDate, $location, $quantity]);
         
-        header("Location: home.php?success=1");
+        header("Location: Home2.php?success=1");
         exit();
 
     } catch (PDOException $e) {
